@@ -18,7 +18,7 @@ from byol.utils import dataset
 
 
 # Preset values for certain number of training epochs.
-_LR_PRESETS = {40: 0.45, 100: 0.45, 300: 0.3, 1000: 0.2}
+_LR_PRESETS = {40: 2.0, 100: 0.45, 300: 0.3, 1000: 0.2}
 _WD_PRESETS = {40: 1e-6, 100: 1e-6, 300: 1e-6, 1000: 1.5e-6}
 _EMA_PRESETS = {40: 0.97, 100: 0.99, 300: 0.99, 1000: 0.996}
 
@@ -31,7 +31,7 @@ def get_config(num_epochs: int, batch_size: int):
 
   config = dict(
       random_seed=0,
-      num_classes=1000,
+      num_classes=10,
       batch_size=batch_size,
       max_steps=num_epochs * train_images_per_epoch // batch_size,
       enable_double_transpose=True,
@@ -40,7 +40,7 @@ def get_config(num_epochs: int, batch_size: int):
           projector_hidden_size=4096,
           projector_output_size=256,
           predictor_hidden_size=4096,
-          encoder_class='ResNet50',  # Should match a class in utils/networks.
+          encoder_class='ResNet18',  # Should match a class in utils/networks.
           encoder_config=dict(
               resnet_v2=False,
               width_multiplier=1),
@@ -65,7 +65,7 @@ def get_config(num_epochs: int, batch_size: int):
       ),
       evaluation_config=dict(
           subset='test',
-          batch_size=100,
+          batch_size=25,
       ),
       checkpointing_config=dict(
           use_checkpointing=True,
