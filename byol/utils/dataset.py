@@ -30,7 +30,7 @@ class Split(enum.Enum):
   """Imagenet dataset split."""
   TRAIN = 1
   TRAIN_AND_VALID = 2
-  VALID = 3
+  VALID = 0
   TEST = 4
 
   @classmethod
